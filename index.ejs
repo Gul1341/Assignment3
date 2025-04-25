@@ -1,0 +1,26 @@
+<%- include('partials/header',{title: 'Home'}) %>
+  
+  <% if(posts.length===0){%>
+     <div>No posts available</div>
+  <% } %>
+  <div>
+        <h1>All Blog Posts</h1>
+        <form>
+    <tr>
+       <% posts.forEach((post,index)=>{%>
+         <td>
+                <% if(post.image){%>
+              <img src="<%= post.image %>">
+                <% } %>
+         </td>
+         <div>
+                <h5><%= post.title %></h5>
+         </div>
+        </form>
+         <form method="post" action="/delete/<%= index %>">
+          <button onclick="return confirm('Are you sure?')">Delete</button>
+         </form>
+       <%}) %>
+    </tr>
+  </div>
+<%- include('partials/footer') %>
